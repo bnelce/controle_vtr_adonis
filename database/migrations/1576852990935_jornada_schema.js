@@ -7,8 +7,19 @@ class JornadaSchema extends Schema {
   up() {
     this.create('jornadas', (table) => {
       table.increments()
-      table.integer('id_condutor', 11).notNullable()
-      table.integer('id_vtr', 11).notNullable()
+      table
+        .integer('id_condutor')
+        .notNullable()
+        .unsigned()
+        .references('id')
+        .inTable('users')
+
+      table
+        .integer('id_vtr')
+        .notNullable()
+        .unsigned()
+        .references('id')
+        .inTable('viaturas')
       table.date('data_ini')
       table.date('data_fim')
       table.time('hora_ini', { precision: 6 })
