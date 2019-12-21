@@ -6,6 +6,8 @@ Abaixo alguns requisitos levantados para o desenvolvimento do app
 
 Requisitos Básicos
 
+
+
 - Crud de Vtr
   - Campos (placa,sigla,marca, modelo,avatar)
 - Crud de Usuários
