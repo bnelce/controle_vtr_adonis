@@ -10,7 +10,7 @@ class UserController {
     return user
   }
 
-  async index({ request, response, view }) {
+  async index() {
 
     const users = await User.all();
 

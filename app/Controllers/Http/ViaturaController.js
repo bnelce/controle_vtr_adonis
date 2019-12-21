@@ -1,33 +1,49 @@
 'use strict'
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
+const Viatura = use('App/Models/Viatura')
 
-/**
- * Resourceful controller for interacting with viaturas
- */
 class ViaturaController {
 
-  async index({ request, response, view }) {
+  async index() {
+
+    const viaturas = await Viatura.all()
+
+    return viaturas
   }
 
-  async create({ request, response, view }) {
+  async store({ request }) {
+    const data = request.only(['placa', 'sigla', 'marca', 'modelo'])
+
+    const viatura = await Viatura.create(data)
+    //FALTA LINKAR COM A IMAGEM DA VTR
+    return viatura
+
   }
 
-  async store({ request, response }) {
+  async show({ params }) {
+    const viatura = await Viatura.findOrFail(params.id)
+
+    return viatura
+
   }
 
-  async show({ params, request, response, view }) {
+  async update({ params, request }) {
+    const viatura = await Viatura.findOrFail(params.id)
+
+    const data = await request.only(['placa', 'sigla', 'marca', 'modelo'])
+    viatura.merge(data)
+
+    await viatura.save(data)
+
+    return viatura
+
   }
 
-  async edit({ params, request, response, view }) {
-  }
+  async destroy({ params }) {
+    const viatura = await Viatura.findOrFail(params.id)
 
-  async update({ params, request, response }) {
-  }
+    viatura.delete()
 
-  async destroy({ params, request, response }) {
   }
 }
 
