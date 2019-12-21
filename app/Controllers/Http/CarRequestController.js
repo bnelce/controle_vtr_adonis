@@ -19,6 +19,8 @@ class CarRequestController {
 
     const carRequest = CarRequest.create(data)
 
+    //disparar email e push para o adm
+
     return carRequest
 
   }
