@@ -4,7 +4,7 @@ const CarRequest = use('App/Models/Jornada')
 
 class ConfirmCarRequestController {
 
-  async update({ params }) {
+  async update({ params, request }) {
     const carRequest = await CarRequest.findOrFail(params.id)
 
     const data = await request.only([

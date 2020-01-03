@@ -8,17 +8,11 @@ class ConfirmCarReturnController {
     const carReturn = await CarReturn.findOrFail(params.id)
 
     const data = await request.only([
-      'id_condutor',
-      'id_vtr',
-      'data_ini',
-      'hora_ini',
-      'km_ini',
       'data_fim',
       'hora_fim',
-      'km_fim',
-      'situacao'
+      'km_fim'
     ])
-    carReturn.merge(data)
+    carReturn.merge({ data, situacao: 4 })
 
     await carReturn.save(data)
   }

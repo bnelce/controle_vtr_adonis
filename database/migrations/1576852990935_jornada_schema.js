@@ -26,7 +26,7 @@ class JornadaSchema extends Schema {
       table.time('hora_fim', { precision: 6 })
       table.integer('km_ini', 11)
       table.integer('km_fim', 11)
-      table.integer('situacao', 4)
+      table.integer('situacao', 1)
       table.timestamps()
     })
   }

@@ -19,10 +19,13 @@ Route.group(() => {
   Route.resource('viaturas', 'ViaturaController').apiOnly()
   Route.resource('jornadas', 'JornadaController').apiOnly()
 
-  Route.put('requests', 'CarRequestController.update')
-  Route.put('returns', 'CarReturnController.update')
+  Route.post('requests', 'CarRequestController.store')
 
-  Route.put('confirmrequests', 'ConfirmCarRequestController.update')
-  Route.put('confirmreturns', 'ConfirmCarReturnController.update')
+  Route.put('returns/:id', 'CarReturnController.update')
+  Route.get('returns/:id', 'CarReturnController.show')
+
+
+  Route.put('confirmrequests/:id', 'ConfirmCarRequestController.update')
+  Route.put('confirmreturns/:id', 'ConfirmCarReturnController.update')
 
 }).middleware(['auth'])
