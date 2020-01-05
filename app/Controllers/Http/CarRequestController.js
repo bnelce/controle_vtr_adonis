@@ -8,12 +8,12 @@ const Viatura = use('App/Models/Viatura')
 
 class CarRequestController {
 
-  async index() {//deve mostrar todas a viatura que não tenham jornada vigente
+  async index () { //deve mostrar todas a viatura que não tenham jornada vigente
     const carsRequests = CarRequest.all()
     return carsRequests
   }
 
-  async store({ request }) {
+  async store ({ request }) {
     const data = request.only([
       'id_vtr',
       'id_condutor',
@@ -22,13 +22,11 @@ class CarRequestController {
       'km_ini'])
 
 
-    const carRequest = CarRequest.create({ ...data, situacao: 1 })
+    const carRequest = CarRequest.create ({ ...data, situacao: 1 })
 
     //dados da viatura e do condutor
     const user = await User.findOrFail(data.id_condutor)
     const vtr = await Viatura.findOrFail(data.id_vtr)
-
-    //disparar email e push para o adm
     await Mail.send(
       ['emails.car_request'],
       {
@@ -47,12 +45,12 @@ class CarRequestController {
 
   }
 
-  async show({ params }) {
+  async show ({ params }) {
     const carRequest = await CarRequest.findOrFail(params.id)
     return carRequest
   }
 
-  async update({ params, request }) {
+  async update ({ params, request }) {
     const carRequest = await CarRequest.findOrFail(params.id)
 
     const data = await request.only(['id_viatura',
@@ -70,10 +68,10 @@ class CarRequestController {
 
   }
 
-  async destroy({ params }) {
+  async destroy ({ params }) {
     const carRequest = await CarRequest.findOrFail(params.id)
 
-    carRequest.delete()
+    carRequest.delete ()
 
   }
 }
